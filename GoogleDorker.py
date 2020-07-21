@@ -10,10 +10,13 @@ def get_arguments():
     parser = optparse.OptionParser()
     parser.add_option("-u", "--url", dest="url", help="Target URL")
     parser.add_option('-m', '--manual', help="Enables manual mode", action="store_true")
+    
     (option, arguments) = parser.parse_args()
+    
     if not option.url:
         parser.error("[-] Please specify an URL, use --help for more info")
     return option
+
 options =  get_arguments()
 url = options.url
 print("\n\n")
@@ -21,6 +24,7 @@ subprocess.call(["chmod", "777", url + ".html"])
 subprocess.call(["rm", url + ".html"])
 subprocess.call(["clear"])
 
+#---------------------------------------------------------------------------------------------------------------------------------
 
 
 print("                        ______                       _         _____                  _                   ")
@@ -29,9 +33,9 @@ print("                      | /  ___   ___    ___    ____ | |  ____  _   \ \   
 print("                      | | (___) / _ \  / _ \  / _  || | / _  )| |   | | / _ \  / ___)| | / ) / _  ) / ___)")
 print("                      | \____/|| |_| || |_| |( ( | || |( (/ / | |__/ / | |_| || |    | |< ( ( (/ / | |    ")
 print("                       \_____/  \___/  \___/  \_|| ||_| \____)|_____/   \___/ |_|    |_| \_) \____)|_|    ")
-print("                                             (_____|                                      By: nerrorsec ")
+print("                                             (_____|                                       ")
 print("\n\n")
-
+#--------------------------------------------------------------------------------------------------------------------------------
 
 
 f = open(str(url) + ".html", "at")
@@ -198,6 +202,7 @@ else:
             f.write('<a href="' + requesturl + '">Click Here</a>')
             f.write("<br>")
         print("[#]Checking for phpinfo() ")
+        
         requesturl = 'https://www.google.com/search?q=site:'+ url +'+ext:php+intitle:phpinfo+%22published+by+the+PHP+Group%22&hl=en'
         response = requests.get(requesturl)
         notfound = re.search('\s-\sdid not match any documents.', response.text)
